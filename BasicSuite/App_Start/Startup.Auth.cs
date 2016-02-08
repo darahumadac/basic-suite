@@ -30,13 +30,23 @@ namespace BasicSuite
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            app.UseFacebookAuthentication(
-               appId: ConfigurationManager.AppSettings["fbId"],
-               appSecret: ConfigurationManager.AppSettings["fbSecret"]);
+            if (ConfigurationManager.AppSettings["fbId"] != null)
+            {
+                app.UseFacebookAuthentication(
+                    appId: ConfigurationManager.AppSettings["fbId"],
+                    appSecret: ConfigurationManager.AppSettings["fbSecret"]
+                );
+            }
 
-            app.UseGoogleAuthentication(
-                clientId: ConfigurationManager.AppSettings["googleAuthId"],
-                clientSecret: ConfigurationManager.AppSettings["googleAuthSecret"]);
+            if(ConfigurationManager.AppSettings["googleAuthId"] != null)
+            {
+                app.UseGoogleAuthentication(
+                    clientId: ConfigurationManager.AppSettings["googleAuthId"],
+                    clientSecret: ConfigurationManager.AppSettings["googleAuthSecret"]
+                );
+            }
+
+           
         }
     }
 }
